@@ -33,10 +33,10 @@ The evil proxy server blocks a web request by two techniques: Blacklisting and C
 1. Insert the hostnames you would like to block (if exists) to the blacklists.txt file. (For example, stackoverflow.com)
 2. Insert the keywords you would like to block (if exists) to the keywords.txt file. (For example, stackoverflow)
 3. Start the proxy server:
-    `
+    ```
     cd evil_proxy
     python3 main.py
-    `
+    ```
 4. Make a web request (for example, using curl):
     ```
     curl --proxy localhost:8888 http://en.wikipedia.org/wiki/Stack_Overflow
