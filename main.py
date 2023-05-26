@@ -202,6 +202,9 @@ class ProxyHandler(BaseHTTPRequestHandler):
 
         for keyword in self.blocked_keywords:
             if keyword in text:
+                print("******")
+                print(text)
+                print("******")
                 print('Blocked by content\n')
                 return True
         return False
