@@ -1,11 +1,9 @@
-# evil_proxy
-A proxy server that blocks access to websites
-
-Certainly! Here's an overview of the differences, pros, and cons of blocking a URL using a custom proxy server with content filtering and blacklisting:
+### EvilProxy
+A proxy server that blocks access to websites using blacklisting and content filtering.
 
 # Techniques:
 
-The evil proxy server blocks a web request by two techniques: Blacklisting and Content Filtering:
+The evil proxy server blocks a web request to websites using two techniques: Blacklisting and Content Filtering:
 
 1. Blacklisting:
    - Blacklisting involves maintaining a list of specific URLs or domains that are explicitly blocked.
