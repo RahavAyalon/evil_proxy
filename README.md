@@ -1,4 +1,4 @@
-### EvilProxy
+# EvilProxy
 A proxy server that blocks access to websites using blacklisting and content filtering.
 
 # Techniques:
