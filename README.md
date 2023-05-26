@@ -38,13 +38,13 @@ The evil proxy server blocks a web request by two techniques: Blacklisting and C
     python3 main.py
     `
 4. Make a web request (for example, using curl):
-    `
+    ```
     curl --proxy localhost:8888 http://en.wikipedia.org/wiki/Stack_Overflow
-    `
+    ```
     This request will be blocked, since the keyword stackoverflow can be found in the webpage parsed HTML.
-    `
+    ```
     curl --proxy localhost:8888 http:/stackoverflow.com
-    `
+    ```
     This request will be blocked, since the hostname stackoverflow.com can be found in blacklist file.
 
     
