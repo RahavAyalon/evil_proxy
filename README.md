@@ -47,9 +47,9 @@ to the request hostname. If so, it blocks the request and respondes 403. Otherwi
 # Tests
 In order to run the supplied test suite:
 1. Follow the instructions in the Usage part in order to start the server.
-2. In the source code directory, run test_evil_proxy.py:
+2. In the source code directory, run test_evil_proxy_server.py:
     ```
-    python3 test_evil_proxy.py
+    python3 test_evil_proxy_server.py
     ```
 
 # Resources
