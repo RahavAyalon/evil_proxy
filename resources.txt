@@ -1,5 +1,0 @@
-Web Filtering:
-	https://perception-point.io/guides/browser-security/web-filtering-an-in-depth-look/
-
-
-

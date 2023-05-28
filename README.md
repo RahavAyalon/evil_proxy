@@ -60,3 +60,11 @@ In order to run the supplied test suite:
     python3 test_evil_proxy.py
     ```
 
+# Resources
+
+https://perception-point.io/guides/browser-security/web-filtering-an-in-depth-look/
+https://www.imperva.com/learn/application-security/ip-blacklist/
+https://realpython.com/python-sockets/
+https://www.geeksforgeeks.org/socket-programming-python/
+https://www.geeksforgeeks.org/creating-a-proxy-webserver-in-python-set-1/
+https://www.geeksforgeeks.org/creating-a-proxy-webserver-in-python-set-2/

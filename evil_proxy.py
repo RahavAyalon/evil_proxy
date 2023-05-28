@@ -6,8 +6,8 @@ from _thread import start_new_thread
 from bs4 import BeautifulSoup
 
 class Server:
-    BLOCKED_KEYWORDS_FILE_PATH = './keywords.txt'
-    BLOCKED_HOSTS_FILE_PATH = './hosts.txt'
+    BLOCKED_KEYWORDS_FILE_PATH = './keywords_blacklist.txt'
+    BLOCKED_HOSTS_FILE_PATH = './hosts_blacklist.txt'
 
     def __init__(self):
         self.blocked_keywords = []

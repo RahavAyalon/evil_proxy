@@ -10,26 +10,27 @@ class ProxyServerTests:
 
 
     def __init__(self):
-        hosts_file = 'hosts.txt'
-        keywords_file = 'keywords.txt'
+        hosts_file = 'hosts_blacklist.txt'
+        keywords_file = 'keywords_blacklist.txt'
         self.BLOCKED_KEYWORD = 'stackoverflow'
         self.BLOCKED_HOSTNAME = 'stackoverflow.com'
         self.NONBLOCKED_HOSTNAME = 'ipinfo.io'
         self.num_passed_tests = 0
         self.proxy = {"https": "127.0.0.1:8080"}
 
-        # Create hosts.txt if it doesn't exist and write 'stackoverflow.com' to it
-        if not os.path.exists(hosts_file):
-            with open(hosts_file, 'w') as file:
-                file.write('') 
+        # Create hosts_blacklist.txt if it doesn't exist and write 'stackoverflow.com' to it
+        if os.path.exists(hosts_file):
+            os.remove(hosts_file)
+        with open(hosts_file, 'w') as file:
+            file.write('') 
         with open(hosts_file, 'a') as hosts:
             hosts.write(self.BLOCKED_HOSTNAME  + "\n")
 
-        # Create keywords.txt if it doesn't exist and write 'stackoverflow' to it
-        if not os.path.exists(keywords_file):
-            with open(keywords_file, 'w') as file:
-                file.write('')
-        # Add 'stackoverflow' to 'keywords.txt'
+        # Create keywords_blcklist.txt if it doesn't exist and write 'stackoverflow' to it
+        if os.path.exists(keywords_file):
+            os.remove(keywords_file)
+        with open(keywords_file, 'w') as file:
+            file.write('')
         with open(keywords_file, 'a') as keywords:
             keywords.write(self.BLOCKED_KEYWORD + "\n")
 
