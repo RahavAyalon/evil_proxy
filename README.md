@@ -1,5 +1,5 @@
 # EvilProxy
-A proxy server that blocks access to websites using blacklisting and content filtering. By default, the EvilProxy server runs on localhost:8080.
+A HTTPS proxy server that blocks access to websites using blacklisting and content filtering. By default, the EvilProxy server runs on localhost:8080.
 
 # Techniques:
 The EvilProxy server blocks a web request to websites using two techniques: Blacklisting and Content Filtering:
