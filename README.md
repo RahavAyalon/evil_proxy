@@ -1,9 +1,13 @@
 # EvilProxy
 A proxy server that blocks access to websites using blacklisting and content filtering.
 
+# Traffic
+
+The EvilProxy runs on localhost:8080.
+
 # Techniques:
 
-The evil proxy server blocks a web request to websites using two techniques: Blacklisting and Content Filtering:
+The EvilProxy server blocks a web request to websites using two techniques: Blacklisting and Content Filtering:
 
 1. Blacklisting:
    - Blacklisting involves maintaining a list of specific URLs or domains that are explicitly blocked.
@@ -14,8 +18,6 @@ The evil proxy server blocks a web request to websites using two techniques: Bla
      - IP vulnurability: Blacklisting typically operates at the domain or URL level rather than the IP address level. When a user tries to access a website using an IP address directly, the request is still routed to the server associated with that IP address, bypassing DNS resolution and domain-based blacklisting.
      - Reactive approach: Blacklisting relies on maintaining an up-to-date list of blocked URLs, which means new or previously unknown malicious URLs may still be accessible until they are added to the blacklist.
      - Resource-intensive: As the blacklist grows, the proxy server needs to constantly compare requested URLs against the list, which can consume system resources.
-
-
 2. Content Filtering:
    - Content filtering involves examining the content of a webpage or resource to determine whether it should be allowed or blocked based on specific criteria.
    - Pros:
@@ -25,6 +27,10 @@ The evil proxy server blocks a web request to websites using two techniques: Bla
      - False positives: Content filtering may occasionally block legitimate content that matches the defined criteria, leading to false positives.
      - Overhead: Implementing content filtering can introduce additional processing overhead on the proxy server, potentially impacting performance.
 
+# Logic and Design
+
+For each web request the server gets, it checks if one of the contents of the hosts.txt (blacklist) file is equal
+to the request hostname. If so, it blocks the request and respondes 403. Otherwise, it preforms HTTPS handshake, gets the content of the requested website and checks if the website content contains one of the blocking keywords, if so, responds 403, otherwise, responds the content of the website with status 200 OK.
 
 # Usage
 
@@ -37,13 +43,20 @@ The evil proxy server blocks a web request to websites using two techniques: Bla
     ```
 4. Make a web request (for example, using curl):
     ```
-    curl --proxy localhost:8888 http://en.wikipedia.org/wiki/Stack_Overflow
+    curl --proxy localhost:8080 https://stackoverflow.com
     ```
-    This request will be blocked, since the keyword stackoverflow can be found in the webpage parsed HTML.
+    This request will be blocked, since stackoverflow.com is found in the blocked hosts file, and the keyword beacase stackoverflow can be found in the webpage parsed HTML.
     ```
-    curl --proxy localhost:8888 http:/stackoverflow.com
+    curl --proxy localhost:8080 https://ipinfo.io
     ```
-    This request will be blocked, since the hostname stackoverflow.com can be found in blacklist file.
+    This request will not be blocked, since the hostname ipinfo.io can't be found in the blocked hosts file, and there is no blocking keyword that can be found in the webpage parsed HTML.
 
-    
+# Tests
+
+In order to run the supplied test suite:
+1. Follow the instructions in the Usage part in order to start the server.
+2. In the source code directory, run test_evil_proxy.py:
+    ```
+    python3 test_evil_proxy.py
+    ```
 
