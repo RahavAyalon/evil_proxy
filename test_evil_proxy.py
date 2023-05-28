@@ -2,13 +2,11 @@ import threading
 import requests
 from termcolor import colored
 import os
-from evil_proxy import Server
+from evil_proxy_server import EvilProxyServer
 from unittest.mock import MagicMock, patch
 
 
 class ProxyServerTests:
-
-
     def __init__(self):
         hosts_file = 'hosts_blacklist.txt'
         keywords_file = 'keywords_blacklist.txt'
@@ -37,7 +35,7 @@ class ProxyServerTests:
 
     def test_block_stackoverflow(self):
         mock_log = MagicMock()
-        with patch.object(Server, 'log', mock_log):
+        with patch.object(EvilProxyServer, 'log', mock_log):
             try:
                 requests.get("https://" + self.BLOCKED_HOSTNAME, proxies=self.proxy)
             except OSError as e:
@@ -48,7 +46,7 @@ class ProxyServerTests:
 
     def test_allow_ipinfo(self):
         mock_log = MagicMock()
-        with patch.object(Server, 'log', mock_log):
+        with patch.object(EvilProxyServer, 'log', mock_log):
             try:
                 response = requests.get("https://" + self.NONBLOCKED_HOSTNAME, proxies=self.proxy)
                 assert response.status_code == 200
@@ -59,9 +57,9 @@ class ProxyServerTests:
                 pass
 
 
-    def test_concurrent_clients(self):
+    def test_concurrent_requests(self):
         mock_log = MagicMock()
-        with patch.object(Server, 'log', mock_log):
+        with patch.object(EvilProxyServer, 'log', mock_log):
             # Start the server in a separate thread
             server_thread = threading.Thread(target=None)
             server_thread.start()
@@ -98,7 +96,7 @@ if __name__ == "__main__":
     tester = ProxyServerTests()
     tester.test_block_stackoverflow()
     tester.test_allow_ipinfo()
-    tester.test_concurrent_clients()
+    tester.test_concurrent_requests()
     print()
     print(colored("***********************************************************", "green"))   
     print(colored(f"Number of tests PASSED: {tester.num_passed_tests} out of 3", "green"))   

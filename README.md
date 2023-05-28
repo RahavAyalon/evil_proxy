@@ -1,12 +1,7 @@
 # EvilProxy
-A proxy server that blocks access to websites using blacklisting and content filtering.
-
-# Traffic
-
-The EvilProxy runs on localhost:8080.
+A proxy server that blocks access to websites using blacklisting and content filtering. By default, the EvilProxy server runs on localhost:8080.
 
 # Techniques:
-
 The EvilProxy server blocks a web request to websites using two techniques: Blacklisting and Content Filtering:
 
 1. Blacklisting:
@@ -28,14 +23,12 @@ The EvilProxy server blocks a web request to websites using two techniques: Blac
      - Overhead: Implementing content filtering can introduce additional processing overhead on the proxy server, potentially impacting performance.
 
 # Logic and Design
-
-For each web request the server gets, it checks if one of the contents of the hosts.txt (blacklist) file is equal
+For each web request the server gets, it checks if one of the contents of the hosts_blacklist.txt (blacklist) file is equal
 to the request hostname. If so, it blocks the request and respondes 403. Otherwise, it preforms HTTPS handshake, gets the content of the requested website and checks if the website content contains one of the blocking keywords, if so, responds 403, otherwise, responds the content of the website with status 200 OK.
 
 # Usage
-
-1. Insert the hostnames you would like to block (if exists) to the blacklists.txt file. (For example, stackoverflow.com)
-2. Insert the keywords you would like to block (if exists) to the keywords.txt file. (For example, stackoverflow)
+1. Insert the hostnames you would like to block (if exists) to the hosts_blacklist.txt file. (For example, stackoverflow.com)
+2. Insert the keywords you would like to block (if exists) to the keywords_blacklist.txt file. (For example, stackoverflow)
 3. Start the proxy server:
     ```
     cd evil_proxy
@@ -52,7 +45,6 @@ to the request hostname. If so, it blocks the request and respondes 403. Otherwi
     This request will not be blocked, since the hostname ipinfo.io can't be found in the blocked hosts file, and there is no blocking keyword that can be found in the webpage parsed HTML.
 
 # Tests
-
 In order to run the supplied test suite:
 1. Follow the instructions in the Usage part in order to start the server.
 2. In the source code directory, run test_evil_proxy.py:
@@ -61,10 +53,9 @@ In order to run the supplied test suite:
     ```
 
 # Resources
-
-https://perception-point.io/guides/browser-security/web-filtering-an-in-depth-look/
-https://www.imperva.com/learn/application-security/ip-blacklist/
-https://realpython.com/python-sockets/
-https://www.geeksforgeeks.org/socket-programming-python/
-https://www.geeksforgeeks.org/creating-a-proxy-webserver-in-python-set-1/
-https://www.geeksforgeeks.org/creating-a-proxy-webserver-in-python-set-2/
+1. https://perception-point.io/guides/browser-security/web-filtering-an-in-depth-look/
+2. https://www.imperva.com/learn/application-security/ip-blacklist/
+3. https://realpython.com/python-sockets/
+4. https://www.geeksforgeeks.org/socket-programming-python/
+5. https://www.geeksforgeeks.org/creating-a-proxy-webserver-in-python-set-1/
+6. https://www.geeksforgeeks.org/creating-a-proxy-webserver-in-python-set-2/

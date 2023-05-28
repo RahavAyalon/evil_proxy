@@ -1,11 +1,12 @@
-import socket
-import sys
-import datetime
-import time
+
 from _thread import start_new_thread
 from bs4 import BeautifulSoup
+import datetime
+import socket
+import time
+import sys
 
-class Server:
+class EvilProxyServer:
     BLOCKED_KEYWORDS_FILE_PATH = './keywords_blacklist.txt'
     BLOCKED_HOSTS_FILE_PATH = './hosts_blacklist.txt'
 
@@ -49,11 +50,9 @@ class Server:
         try:
             self.log("Starting Server")
             self.listen(conn, buffer, port)
-
         except KeyboardInterrupt:
             self.log("Interrupting Server")
             time.sleep(.5)
-
         finally:
             self.log("Stopping Server")
             sys.exit()
@@ -170,6 +169,6 @@ class Server:
                 break
 
 if __name__ == "__main__":
-    server = Server()
-    server.start_server()
+    evil_proxy_server = EvilProxyServer()
+    evil_proxy_server.start_server()
 
